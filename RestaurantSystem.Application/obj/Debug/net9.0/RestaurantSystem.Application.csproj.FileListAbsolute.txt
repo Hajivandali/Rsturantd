@@ -13,3 +13,4 @@
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.Application/obj/Debug/net9.0/refint/RestaurantSystem.Application.dll
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.Application/obj/Debug/net9.0/RestaurantSystem.Application.pdb
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.Application/obj/Debug/net9.0/ref/RestaurantSystem.Application.dll
+/Users/ali/Desktop/Ali/C#/RestaurantSystem.Application/obj/Debug/net9.0/RestaurantSystem.Application.sourcelink.json

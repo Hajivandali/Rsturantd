@@ -59,7 +59,7 @@ namespace RestaurantSystem.Infrastructure.Persistence
             // CustomerInvoiceItem and Product relationship
             modelBuilder.Entity<CustomerInvoiceItem>()
                 .HasOne(cii => cii.Product)
-                .WithMany()
+                .WithMany(p=> p.InvoiceItems)
                 .HasForeignKey(cii => cii.ProductId);
 
             // Configure decimal precision for CustomerInvoiceItem
