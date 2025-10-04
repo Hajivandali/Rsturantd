@@ -15,6 +15,7 @@ namespace RestaurantSystem.Core.Entities
         public CustomerInvoice Invoice { get; set; } = null!;
         public long ProductId { get; set; }
         public Product Product { get; set; } = null!;
+        public ICollection<CustomerInvoiceItem> CustomerInvoiceItems { get; set; } = new List<CustomerInvoiceItem>();
 
     }
 }

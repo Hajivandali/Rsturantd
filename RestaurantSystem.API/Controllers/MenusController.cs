@@ -93,8 +93,8 @@ namespace RestaurantSystem.API.Controllers
                 var menu = new Menu
                 {
                     Title = createMenuDto.Title,
-                    CreatedDate = DateTimeOffset.Now,
-                    LastEdited = DateTime.Now
+                    CreatedDate = DateTimeOffset.UtcNow,
+                    LastEdited = DateTime.UtcNow
                 };
 
                 await _menuService.AddMenuAsync(menu);

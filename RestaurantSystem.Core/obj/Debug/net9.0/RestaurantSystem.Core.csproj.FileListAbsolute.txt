@@ -9,3 +9,4 @@
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.Core/obj/Debug/net9.0/refint/RestaurantSystem.Core.dll
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.Core/obj/Debug/net9.0/RestaurantSystem.Core.pdb
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.Core/obj/Debug/net9.0/ref/RestaurantSystem.Core.dll
+/Users/ali/Desktop/Ali/C#/RestaurantSystem.Core/obj/Debug/net9.0/RestaurantSystem.Core.sourcelink.json

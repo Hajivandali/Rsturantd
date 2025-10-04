@@ -139,3 +139,4 @@
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/RestaurantSystem.API.xml
+/Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/RestaurantSystem.API.sourcelink.json

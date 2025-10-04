@@ -17,3 +17,4 @@
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.Infrastructure/obj/Debug/net9.0/RestaurantSystem.Infrastructure.pdb
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.Infrastructure/obj/Debug/net9.0/RestaurantSystem.Infrastructure.genruntimeconfig.cache
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.Infrastructure/obj/Debug/net9.0/ref/RestaurantSystem.Infrastructure.dll
+/Users/ali/Desktop/Ali/C#/RestaurantSystem.Infrastructure/obj/Debug/net9.0/RestaurantSystem.Infrastructure.sourcelink.json
