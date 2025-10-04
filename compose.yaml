@@ -1,0 +1,43 @@
+services:
+  csharp-restaurant-api:
+    build:
+      context: ./RestaurantSystem.API
+      dockerfile: Dockerfile  # Make sure the Dockerfile is named correctly in the API directory
+    restart: unless-stopped
+    init: true
+    ports:
+      - "80:80"  # Exposed by Dockerfile, default ASP.NET port
+    # env_file: ./.env  # Uncomment if .env file exists in ./RestaurantSystem.API
+    networks:
+      - restaurant-net
+    # depends_on:  # Uncomment and add external services here if needed
+    #   - postgres
+
+# If you discover a database or other external service requirement, add it below:
+#  postgres:
+#    image: postgres:latest
+#    restart: unless-stopped
+#    environment:
+#      POSTGRES_USER: restaurant
+#      POSTGRES_PASSWORD: restaurantpass
+#      POSTGRES_DB: restaurantdb
+#    volumes:
+#      - postgres-data:/var/lib/postgresql/data
+#    networks:
+#      - restaurant-net
+#    healthcheck:
+#      test: ["CMD-SHELL", "pg_isready -U restaurant"]
+#      interval: 30s
+#      timeout: 5s
+#      retries: 5
+
+networks:
+  restaurant-net:
+    driver: bridge
+
+# Uncomment if you add a database service above
+#volumes:
+#  postgres-data:
+#    driver: local
+
+

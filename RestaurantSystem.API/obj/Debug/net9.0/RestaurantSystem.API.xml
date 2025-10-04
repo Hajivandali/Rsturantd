@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RestaurantSystem.API</name>
+    </assembly>
+    <members>
+        <member name="T:RestaurantSystem.API.Controllers.ProductsController">
+            <summary>
+            Controller for managing restaurant products
+            </summary>
+        </member>
+        <member name="M:RestaurantSystem.API.Controllers.ProductsController.GetProducts">
+            <summary>
+            Gets all products
+            </summary>
+            <returns>List of all products</returns>
+            <response code="200">Returns the list of products</response>
+            <response code="500">If there was an internal server error</response>
+        </member>
+        <member name="M:RestaurantSystem.API.Controllers.ProductsController.GetProduct(System.Int64)">
+            <summary>
+            Gets a specific product by ID
+            </summary>
+            <param name="id">The product ID</param>
+            <returns>The requested product</returns>
+            <response code="200">Returns the requested product</response>
+            <response code="404">If the product is not found</response>
+            <response code="500">If there was an internal server error</response>
+        </member>
+        <member name="M:RestaurantSystem.API.Controllers.ProductsController.CreateProduct(RestaurantSystem.API.DTOs.CreateProductDto)">
+            <summary>
+            Creates a new product
+            </summary>
+            <param name="createProductDto">The product data</param>
+            <returns>The created product</returns>
+            <response code="201">Returns the created product</response>
+            <response code="400">If the input data is invalid</response>
+            <response code="500">If there was an internal server error</response>
+        </member>
+    </members>
+</doc>
