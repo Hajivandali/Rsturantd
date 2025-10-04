@@ -12,5 +12,7 @@ namespace RestaurantSystem.Core.Entities
         public string Name { get; set; } = null!;
         public string Family { get; set; } = null!;
         public long PhoneNumber { get; set; }
+        public ICollection<CustomerInvoice> Invoices { get; set; } = new List<CustomerInvoice>();
+
     }
 }

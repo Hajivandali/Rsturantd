@@ -1,47 +1,18 @@
-# syntax=docker/dockerfile:1
-
-ARG DOTNET_VERSION=9.0
-
-# Build stage
-FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION} AS builder
-WORKDIR /src
-
-# Copy solution and project files first for restore (use --link for faster copy)
-COPY --link ../RestaurantSystem.sln ./
-COPY --link ../RestaurantSystem.Core/RestaurantSystem.Core.csproj ./RestaurantSystem.Core/
-COPY --link ../RestaurantSystem.Application/RestaurantSystem.Application.csproj ./RestaurantSystem.Application/
-COPY --link ../RestaurantSystem.Infrastructure/RestaurantSystem.Infrastructure.csproj ./RestaurantSystem.Infrastructure/
-COPY --link RestaurantSystem.API.csproj ./RestaurantSystem.API/
-
-# Restore dependencies with cache mounts
-RUN --mount=type=cache,target=/root/.nuget/packages \
-    --mount=type=cache,target=/root/.cache/msbuild \
-    dotnet restore ./RestaurantSystem.sln
-
-# Copy all source files (use --link for faster copy)
-COPY --link ../RestaurantSystem.Core ./RestaurantSystem.Core
-COPY --link ../RestaurantSystem.Application ./RestaurantSystem.Application
-COPY --link ../RestaurantSystem.Infrastructure ./RestaurantSystem.Infrastructure
-COPY --link . ./RestaurantSystem.API
-
-# Publish the API project
-RUN dotnet publish ./RestaurantSystem.API/RestaurantSystem.API.csproj -c Release -o /app/publish --no-restore
-
-# Final runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION} AS final
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
+EXPOSE 5000
+EXPOSE 5001
 
-# Create non-root user
-RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
-USER appuser
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+COPY . .
+RUN dotnet restore "RestaurantSystem.API.csproj"
+RUN dotnet build "RestaurantSystem.API.csproj" -c Release -o /app/build
 
-# Copy published output from builder
-COPY --from=builder /app/publish .
+FROM build AS publish
+RUN dotnet publish "RestaurantSystem.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-# Expose default ASP.NET port
-EXPOSE 80
-
-# Healthcheck (optional, can be customized)
-HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 CMD wget --spider -q http://localhost:80/health || exit 1
-
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "RestaurantSystem.API.dll"]

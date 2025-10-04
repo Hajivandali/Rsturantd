@@ -47,10 +47,7 @@ namespace RestaurantSystem.Infrastructure.Persistence
             // Customer and CustomerInvoice relationship
             modelBuilder.Entity<CustomerInvoice>()
                 .HasOne(ci => ci.Customer)
-                .WithMany(
-
-
-                )
+                .WithMany(c => c.Invoices)
                 .HasForeignKey(ci => ci.CustomerId);
 
             // CustomerInvoice and CustomerInvoiceItem relationship
