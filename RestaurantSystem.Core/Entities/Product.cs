@@ -16,6 +16,8 @@ namespace RestaurantSystem.Core.Entities
 
         public ICollection<MenuItem> MenuItems { get; set; } = new List<MenuItem>();
         public ICollection<Price> Prices { get; set; } = new List<Price>();
+            public ICollection<CustomerInvoiceItem> InvoiceItems { get; set; } = new List<CustomerInvoiceItem>();
+
     
     }
 }

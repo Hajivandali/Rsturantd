@@ -22,16 +22,16 @@ namespace RestaurantSystem.API.Controllers
             try
             {
                 var customerInvoices = await _customerInvoiceService.GetAllAsync();
-                var customerInvoiceDtos = customerInvoices.Select(ci => new CustomerInvoiceDto
+
+                var result = customerInvoices.Select(ci => new CustomerInvoiceDto
                 {
                     Id = ci.Id,
                     CreatedDate = ci.CreatedDate,
                     CustomerId = ci.CustomerId,
-                    TotalAmount = ci.TotalAmount,
+                    TotalAmount = (long)ci.TotalAmount,
                     Customer = ci.Customer != null ? new CustomerDto
                     {
                         Id = ci.Customer.Id,
-                        CustomerID = ci.Customer.CustomerID,
                         Name = ci.Customer.Name,
                         Family = ci.Customer.Family,
                         PhoneNumber = ci.Customer.PhoneNumber
@@ -47,11 +47,13 @@ namespace RestaurantSystem.API.Controllers
                     }).ToList()
                 });
 
-                return Ok(ApiResponseDto<IEnumerable<CustomerInvoiceDto>>.SuccessResult(customerInvoiceDtos));
+                return Ok(ApiResponseDto<IEnumerable<CustomerInvoiceDto>>.SuccessResult(result));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ApiResponseDto<IEnumerable<CustomerInvoiceDto>>.ErrorResult("An error occurred while retrieving customer invoices", new List<string> { ex.Message }));
+                return StatusCode(500, ApiResponseDto<IEnumerable<CustomerInvoiceDto>>.ErrorResult(
+                    "An error occurred while retrieving customer invoices",
+                    new List<string> { ex.Message }));
             }
         }
 
@@ -60,27 +62,24 @@ namespace RestaurantSystem.API.Controllers
         {
             try
             {
-                var customerInvoice = await _customerInvoiceService.GetByIdAsync(id);
-                if (customerInvoice == null)
-                {
+                var ci = await _customerInvoiceService.GetByIdAsync(id);
+                if (ci == null)
                     return NotFound(ApiResponseDto<CustomerInvoiceDto>.ErrorResult("Customer invoice not found"));
-                }
 
-                var customerInvoiceDto = new CustomerInvoiceDto
+                var dto = new CustomerInvoiceDto
                 {
-                    Id = customerInvoice.Id,
-                    CreatedDate = customerInvoice.CreatedDate,
-                    CustomerId = customerInvoice.CustomerId,
-                    TotalAmount = customerInvoice.TotalAmount,
-                    Customer = customerInvoice.Customer != null ? new CustomerDto
+                    Id = ci.Id,
+                    CreatedDate = ci.CreatedDate,
+                    CustomerId = ci.CustomerId,
+                    TotalAmount = (long)ci.TotalAmount,
+                    Customer = ci.Customer != null ? new CustomerDto
                     {
-                        Id = customerInvoice.Customer.Id,
-                        CustomerID = customerInvoice.Customer.CustomerID,
-                        Name = customerInvoice.Customer.Name,
-                        Family = customerInvoice.Customer.Family,
-                        PhoneNumber = customerInvoice.Customer.PhoneNumber
+                        Id = ci.Customer.Id,
+                        Name = ci.Customer.Name,
+                        Family = ci.Customer.Family,
+                        PhoneNumber = ci.Customer.PhoneNumber
                     } : null,
-                    InvoiceItems = customerInvoice.InvoiceItems.Select(ii => new CustomerInvoiceItemDto
+                    InvoiceItems = ci.InvoiceItems.Select(ii => new CustomerInvoiceItemDto
                     {
                         Id = ii.Id,
                         CountProduct = ii.CountProduct,
@@ -91,16 +90,18 @@ namespace RestaurantSystem.API.Controllers
                     }).ToList()
                 };
 
-                return Ok(ApiResponseDto<CustomerInvoiceDto>.SuccessResult(customerInvoiceDto));
+                return Ok(ApiResponseDto<CustomerInvoiceDto>.SuccessResult(dto));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ApiResponseDto<CustomerInvoiceDto>.ErrorResult("An error occurred while retrieving the customer invoice", new List<string> { ex.Message }));
+                return StatusCode(500, ApiResponseDto<CustomerInvoiceDto>.ErrorResult(
+                    "An error occurred while retrieving the customer invoice",
+                    new List<string> { ex.Message }));
             }
         }
 
         [HttpPost]
-        public async Task<ActionResult<ApiResponseDto<CustomerInvoiceDto>>> CreateCustomerInvoice(CreateCustomerInvoiceDto createCustomerInvoiceDto)
+        public async Task<ActionResult<ApiResponseDto<CustomerInvoiceDto>>> CreateCustomerInvoice(CreateCustomerInvoiceDto dto)
         {
             try
             {
@@ -110,12 +111,12 @@ namespace RestaurantSystem.API.Controllers
                     return BadRequest(ApiResponseDto<CustomerInvoiceDto>.ErrorResult("Invalid input data", errors));
                 }
 
-                var customerInvoice = new CustomerInvoice
+                var entity = new CustomerInvoice
                 {
-                    CreatedDate = DateTime.Now,
-                    CustomerId = createCustomerInvoiceDto.CustomerId,
-                    TotalAmount = (long)createCustomerInvoiceDto.TotalAmount,
-                    InvoiceItems = createCustomerInvoiceDto.InvoiceItems.Select(ii => new CustomerInvoiceItem
+                    CreatedDate = DateTime.UtcNow,
+                    CustomerId = dto.CustomerId,
+                    TotalAmount = dto.TotalAmount,
+                    InvoiceItems = dto.InvoiceItems.Select(ii => new CustomerInvoiceItem
                     {
                         CountProduct = ii.CountProduct,
                         Fee = ii.Fee,
@@ -125,35 +126,36 @@ namespace RestaurantSystem.API.Controllers
                     }).ToList()
                 };
 
-                await _customerInvoiceService.AddAsync(customerInvoice);
+                await _customerInvoiceService.AddAsync(entity);
 
-                var customerInvoiceDto = new CustomerInvoiceDto
-                {
-                    Id = customerInvoice.Id,
-                    CreatedDate = customerInvoice.CreatedDate,
-                    CustomerId = customerInvoice.CustomerId,
-                    TotalAmount = customerInvoice.TotalAmount,
-                    InvoiceItems = customerInvoice.InvoiceItems.Select(ii => new CustomerInvoiceItemDto
+                return CreatedAtAction(nameof(GetCustomerInvoice), new { id = entity.Id },
+                    ApiResponseDto<CustomerInvoiceDto>.SuccessResult(new CustomerInvoiceDto
                     {
-                        Id = ii.Id,
-                        CountProduct = ii.CountProduct,
-                        Fee = ii.Fee,
-                        TotalPrice = ii.TotalPrice,
-                        InvoiceReference = ii.InvoiceReference,
-                        ProductId = ii.ProductId
-                    }).ToList()
-                };
-
-                return CreatedAtAction(nameof(GetCustomerInvoice), new { id = customerInvoice.Id }, ApiResponseDto<CustomerInvoiceDto>.SuccessResult(customerInvoiceDto, "Customer invoice created successfully"));
+                        Id = entity.Id,
+                        CreatedDate = entity.CreatedDate,
+                        CustomerId = entity.CustomerId,
+                        TotalAmount = (long)entity.TotalAmount,
+                        InvoiceItems = entity.InvoiceItems.Select(ii => new CustomerInvoiceItemDto
+                        {
+                            Id = ii.Id,
+                            CountProduct = ii.CountProduct,
+                            Fee = ii.Fee,
+                            TotalPrice = ii.TotalPrice,
+                            InvoiceReference = ii.InvoiceReference,
+                            ProductId = ii.ProductId
+                        }).ToList()
+                    }, "Customer invoice created successfully"));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ApiResponseDto<CustomerInvoiceDto>.ErrorResult("An error occurred while creating the customer invoice", new List<string> { ex.Message }));
+                return StatusCode(500, ApiResponseDto<CustomerInvoiceDto>.ErrorResult(
+                    "An error occurred while creating the customer invoice",
+                    new List<string> { ex.Message }));
             }
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<ApiResponseDto<CustomerInvoiceDto>>> UpdateCustomerInvoice(long id, UpdateCustomerInvoiceDto updateCustomerInvoiceDto)
+        public async Task<ActionResult<ApiResponseDto<CustomerInvoiceDto>>> UpdateCustomerInvoice(long id, UpdateCustomerInvoiceDto dto)
         {
             try
             {
@@ -163,39 +165,28 @@ namespace RestaurantSystem.API.Controllers
                     return BadRequest(ApiResponseDto<CustomerInvoiceDto>.ErrorResult("Invalid input data", errors));
                 }
 
-                var existingCustomerInvoice = await _customerInvoiceService.GetByIdAsync(id);
-                if (existingCustomerInvoice == null)
-                {
+                var entity = await _customerInvoiceService.GetByIdAsync(id);
+                if (entity == null)
                     return NotFound(ApiResponseDto<CustomerInvoiceDto>.ErrorResult("Customer invoice not found"));
-                }
 
-                existingCustomerInvoice.CustomerId = updateCustomerInvoiceDto.CustomerId;
-                existingCustomerInvoice.TotalAmount = (long)updateCustomerInvoiceDto.TotalAmount;
+                entity.CustomerId = dto.CustomerId;
+                entity.TotalAmount = dto.TotalAmount;
 
-                await _customerInvoiceService.UpdateAsync(existingCustomerInvoice);
+                await _customerInvoiceService.UpdateAsync(entity);
 
-                var customerInvoiceDto = new CustomerInvoiceDto
+                return Ok(ApiResponseDto<CustomerInvoiceDto>.SuccessResult(new CustomerInvoiceDto
                 {
-                    Id = existingCustomerInvoice.Id,
-                    CreatedDate = existingCustomerInvoice.CreatedDate,
-                    CustomerId = existingCustomerInvoice.CustomerId,
-                    TotalAmount = existingCustomerInvoice.TotalAmount,
-                    InvoiceItems = existingCustomerInvoice.InvoiceItems.Select(ii => new CustomerInvoiceItemDto
-                    {
-                        Id = ii.Id,
-                        CountProduct = ii.CountProduct,
-                        Fee = ii.Fee,
-                        TotalPrice = ii.TotalPrice,
-                        InvoiceReference = ii.InvoiceReference,
-                        ProductId = ii.ProductId
-                    }).ToList()
-                };
-
-                return Ok(ApiResponseDto<CustomerInvoiceDto>.SuccessResult(customerInvoiceDto, "Customer invoice updated successfully"));
+                    Id = entity.Id,
+                    CreatedDate = entity.CreatedDate,
+                    CustomerId = entity.CustomerId,
+                    TotalAmount = (long)entity.TotalAmount
+                }, "Customer invoice updated successfully"));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ApiResponseDto<CustomerInvoiceDto>.ErrorResult("An error occurred while updating the customer invoice", new List<string> { ex.Message }));
+                return StatusCode(500, ApiResponseDto<CustomerInvoiceDto>.ErrorResult(
+                    "An error occurred while updating the customer invoice",
+                    new List<string> { ex.Message }));
             }
         }
 
@@ -204,19 +195,18 @@ namespace RestaurantSystem.API.Controllers
         {
             try
             {
-                var customerInvoice = await _customerInvoiceService.GetByIdAsync(id);
-                if (customerInvoice == null)
-                {
+                var entity = await _customerInvoiceService.GetByIdAsync(id);
+                if (entity == null)
                     return NotFound(ApiResponseDto<object>.ErrorResult("Customer invoice not found"));
-                }
 
                 await _customerInvoiceService.DeleteAsync(id);
-
-                return Ok(ApiResponseDto<object>.SuccessResult(null, "Customer invoice deleted successfully"));
+                return Ok(ApiResponseDto<object>.SuccessResult( "Customer invoice deleted successfully"));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ApiResponseDto<object>.ErrorResult("An error occurred while deleting the customer invoice", new List<string> { ex.Message }));
+                return StatusCode(500, ApiResponseDto<object>.ErrorResult(
+                    "An error occurred while deleting the customer invoice",
+                    new List<string> { ex.Message }));
             }
         }
     }

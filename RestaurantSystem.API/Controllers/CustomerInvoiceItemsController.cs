@@ -35,7 +35,8 @@ namespace RestaurantSystem.API.Controllers
                         Id = cii.Invoice.Id,
                         CreatedDate = cii.Invoice.CreatedDate,
                         CustomerId = cii.Invoice.CustomerId,
-                        TotalAmount = cii.Invoice.TotalAmount
+                        TotalAmount = (long)Math.Round(cii.Invoice.TotalAmount)
+
                     } : null,
                     Product = cii.Product != null ? new ProductDto
                     {
@@ -80,7 +81,7 @@ namespace RestaurantSystem.API.Controllers
                         Id = customerInvoiceItem.Invoice.Id,
                         CreatedDate = customerInvoiceItem.Invoice.CreatedDate,
                         CustomerId = customerInvoiceItem.Invoice.CustomerId,
-                        TotalAmount = customerInvoiceItem.Invoice.TotalAmount
+                        TotalAmount = (long)customerInvoiceItem.Invoice.TotalAmount
                     } : null,
                     Product = customerInvoiceItem.Product != null ? new ProductDto
                     {
@@ -195,7 +196,7 @@ namespace RestaurantSystem.API.Controllers
 
                 await _customerInvoiceItemService.DeleteAsync(customerInvoiceItem);
 
-                return Ok(ApiResponseDto<object>.SuccessResult(null, "Customer invoice item deleted successfully"));
+                return Ok(ApiResponseDto<object>.SuccessResult( "Customer invoice item deleted successfully"));
             }
             catch (Exception ex)
             {
