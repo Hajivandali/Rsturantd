@@ -25,7 +25,6 @@ namespace RestaurantSystem.API.Controllers
                 var customerDtos = customers.Select(c => new CustomerDto
                 {
                     Id = c.Id,
-                    CustomerID = c.CustomerID,
                     Name = c.Name,
                     Family = c.Family,
                     PhoneNumber = c.PhoneNumber
@@ -35,7 +34,8 @@ namespace RestaurantSystem.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ApiResponseDto<IEnumerable<CustomerDto>>.ErrorResult("An error occurred while retrieving customers", new List<string> { ex.Message }));
+                return StatusCode(500, ApiResponseDto<IEnumerable<CustomerDto>>.ErrorResult(
+                    "An error occurred while retrieving customers", new List<string> { ex.Message }));
             }
         }
 
@@ -53,7 +53,6 @@ namespace RestaurantSystem.API.Controllers
                 var customerDto = new CustomerDto
                 {
                     Id = customer.Id,
-                    CustomerID = customer.CustomerID,
                     Name = customer.Name,
                     Family = customer.Family,
                     PhoneNumber = customer.PhoneNumber
@@ -63,7 +62,8 @@ namespace RestaurantSystem.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ApiResponseDto<CustomerDto>.ErrorResult("An error occurred while retrieving the customer", new List<string> { ex.Message }));
+                return StatusCode(500, ApiResponseDto<CustomerDto>.ErrorResult(
+                    "An error occurred while retrieving the customer", new List<string> { ex.Message }));
             }
         }
 
@@ -80,7 +80,6 @@ namespace RestaurantSystem.API.Controllers
 
                 var customer = new Customer
                 {
-                    CustomerID = createCustomerDto.CustomerID,
                     Name = createCustomerDto.Name,
                     Family = createCustomerDto.Family,
                     PhoneNumber = long.Parse(createCustomerDto.PhoneNumber.Replace("-", "").Replace(" ", ""))
@@ -91,17 +90,18 @@ namespace RestaurantSystem.API.Controllers
                 var customerDto = new CustomerDto
                 {
                     Id = customer.Id,
-                    CustomerID = customer.CustomerID,
                     Name = customer.Name,
                     Family = customer.Family,
                     PhoneNumber = customer.PhoneNumber
                 };
 
-                return CreatedAtAction(nameof(GetCustomer), new { id = customer.Id }, ApiResponseDto<CustomerDto>.SuccessResult(customerDto, "Customer created successfully"));
+                return CreatedAtAction(nameof(GetCustomer), new { id = customer.Id },
+                    ApiResponseDto<CustomerDto>.SuccessResult(customerDto, "Customer created successfully"));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ApiResponseDto<CustomerDto>.ErrorResult("An error occurred while creating the customer", new List<string> { ex.Message }));
+                return StatusCode(500, ApiResponseDto<CustomerDto>.ErrorResult(
+                    "An error occurred while creating the customer", new List<string> { ex.Message }));
             }
         }
 
@@ -122,7 +122,6 @@ namespace RestaurantSystem.API.Controllers
                     return NotFound(ApiResponseDto<CustomerDto>.ErrorResult("Customer not found"));
                 }
 
-                existingCustomer.CustomerID = updateCustomerDto.CustomerID;
                 existingCustomer.Name = updateCustomerDto.Name;
                 existingCustomer.Family = updateCustomerDto.Family;
                 existingCustomer.PhoneNumber = long.Parse(updateCustomerDto.PhoneNumber.Replace("-", "").Replace(" ", ""));
@@ -132,7 +131,6 @@ namespace RestaurantSystem.API.Controllers
                 var customerDto = new CustomerDto
                 {
                     Id = existingCustomer.Id,
-                    CustomerID = existingCustomer.CustomerID,
                     Name = existingCustomer.Name,
                     Family = existingCustomer.Family,
                     PhoneNumber = existingCustomer.PhoneNumber
@@ -142,7 +140,8 @@ namespace RestaurantSystem.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ApiResponseDto<CustomerDto>.ErrorResult("An error occurred while updating the customer", new List<string> { ex.Message }));
+                return StatusCode(500, ApiResponseDto<CustomerDto>.ErrorResult(
+                    "An error occurred while updating the customer", new List<string> { ex.Message }));
             }
         }
 
@@ -163,7 +162,8 @@ namespace RestaurantSystem.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ApiResponseDto<object>.ErrorResult("An error occurred while deleting the customer", new List<string> { ex.Message }));
+                return StatusCode(500, ApiResponseDto<object>.ErrorResult(
+                    "An error occurred while deleting the customer", new List<string> { ex.Message }));
             }
         }
     }

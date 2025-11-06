@@ -24,55 +24,9 @@ namespace RestaurantSystem.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppContext).Assembly);
             base.OnModelCreating(modelBuilder);
 
-            // Menu and MenuItem relationship
-            modelBuilder.Entity<Menu>()
-                .HasMany(m => m.MenuItems)
-                .WithOne(mi => mi.Menu)
-                .HasForeignKey(mi => mi.MenuReference);
-
-            // MenuItem and Product relationship
-            modelBuilder.Entity<MenuItem>()
-                .HasOne(mi => mi.Product)
-                .WithMany(p => p.MenuItems)
-                .HasForeignKey(mi => mi.ProductReference);
-
-            // Product and Price relationship
-            modelBuilder.Entity<Price>()
-                .HasOne(p => p.Product)
-                .WithMany(p => p.Prices)
-                .HasForeignKey(p => p.ProductReference);
-
-            // Customer and CustomerInvoice relationship
-            modelBuilder.Entity<CustomerInvoice>()
-                .HasOne(ci => ci.Customer)
-                .WithMany(
-
-
-                )
-                .HasForeignKey(ci => ci.CustomerId);
-
-            // CustomerInvoice and CustomerInvoiceItem relationship
-            modelBuilder.Entity<CustomerInvoiceItem>()
-                .HasOne(cii => cii.Invoice)
-                .WithMany(ci => ci.InvoiceItems)
-                .HasForeignKey(cii => cii.InvoiceReference);
-
-            // CustomerInvoiceItem and Product relationship
-            modelBuilder.Entity<CustomerInvoiceItem>()
-                .HasOne(cii => cii.Product)
-                .WithMany()
-                .HasForeignKey(cii => cii.ProductId);
-
-            // Configure decimal precision for CustomerInvoiceItem
-            modelBuilder.Entity<CustomerInvoiceItem>()
-                .Property(cii => cii.Fee)
-                .HasPrecision(18, 2);
-
-            modelBuilder.Entity<CustomerInvoiceItem>()
-                .Property(cii => cii.TotalPrice)
-                .HasPrecision(18, 2);
         }
     }
 }   
