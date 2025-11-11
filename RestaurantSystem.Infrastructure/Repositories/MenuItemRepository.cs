@@ -1,64 +1,44 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using RestaurantSystem.Core.Interfaces;
-using RestaurantSystem.Core.Entities;
-using RestaurantSystem.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using RestaurantSystem.Core.Entities;
+using RestaurantSystem.Core.Interfaces;
+using RestaurantSystem.Infrastructure.Persistence;
 
 namespace RestaurantSystem.Infrastructure.Repositories
 {
-    public class MenuItemRepository : IMenuItemRepository
+    public class MenuItemRepository 
+        : GenericRepository<MenuItem>, IMenuItemRepository
     {
-        private readonly AppDbContext _context;
-
         public MenuItemRepository(AppDbContext context)
+            : base(context)
         {
-            _context = context;
         }
 
-        public async Task AddAsync(MenuItem menuItem)
+        public override async Task<MenuItem?> GetByIdAsync(long id)
         {
-            await _context.MenuItems.AddAsync(menuItem);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task DeleteAsync(long id)
-        {
-            var menuItem = await _context.MenuItems.FindAsync(id);
-            if (menuItem != null)
-            {
-                _context.MenuItems.Remove(menuItem);
-                await _context.SaveChangesAsync();
-            }
-        }
-
-        public async Task<IEnumerable<MenuItem>> GetAllAsync()
-        {
-            return await _context.MenuItems
-                .Include(x => x.Menu)
-                .Include(x => x.Product)
-                .ToListAsync();
-        }
-
-        public async Task<MenuItem?> GetByIdAsync(long id)
-        {
-            return await _context.MenuItems
+            return await _dbSet
                 .Include(mi => mi.Product)
                 .Include(mi => mi.Menu)
                 .FirstOrDefaultAsync(mi => mi.Id == id);
         }
 
-        public async Task SaveChangesAsync()
+        public override async Task<IEnumerable<MenuItem>> GetAllAsync()
         {
-            await _context.SaveChangesAsync();
+            return await _dbSet
+                .Include(mi => mi.Menu)
+                .Include(mi => mi.Product)
+                .ToListAsync();
         }
 
-        public async Task UpdateAsync(MenuItem menuItem)
+        public async Task DeleteAsync(long id)
         {
-            _context.MenuItems.Update(menuItem);
-            await _context.SaveChangesAsync();
+            var entity = await _dbSet.FindAsync(id);
+            if (entity != null)
+            {
+                _dbSet.Remove(entity);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }
