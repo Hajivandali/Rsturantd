@@ -17,12 +17,12 @@ namespace RestaurantSystem.Infrastructure.Persistence.Configurations
             // Relationship: Product -> MenuItems
             builder.HasMany(p => p.MenuItems)
                    .WithOne(mi => mi.Product)
-                   .HasForeignKey(mi => mi.ProductReference);
+                   .HasForeignKey(mi => mi.ProductId);
 
             // Relationship: Product -> Prices
             builder.HasMany(p => p.Prices)
                    .WithOne(pr => pr.Product)
-                   .HasForeignKey(pr => pr.ProductReference);
+                   .HasForeignKey(pr => pr.ProductId);
 
             // Relationship: Product -> CustomerInvoiceItems
             builder.HasMany(p => p.InvoiceItems)

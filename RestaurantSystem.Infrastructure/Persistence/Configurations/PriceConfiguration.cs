@@ -17,7 +17,7 @@ namespace RestaurantSystem.Infrastructure.Persistence.Configurations
             // Relationship: Price -> Product
             builder.HasOne(p => p.Product)
                    .WithMany(pr => pr.Prices)
-                   .HasForeignKey(p => p.ProductReference)
+                   .HasForeignKey(p => p.ProductId)
                    .OnDelete(DeleteBehavior.Cascade);
 
             // Optional: Decimal precision

@@ -119,7 +119,7 @@ namespace RestaurantSystem.Infrastructure.Migrations
                     b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("LastEdited")
+                    b.Property<DateTimeOffset>("LastEdited")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Title")
@@ -144,13 +144,7 @@ namespace RestaurantSystem.Infrastructure.Migrations
                     b.Property<long>("MenuId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("MenuReference")
-                        .HasColumnType("bigint");
-
                     b.Property<long>("ProductId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("ProductReference")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
@@ -173,16 +167,13 @@ namespace RestaurantSystem.Infrastructure.Migrations
                     b.Property<long>("Amount")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("LastEdited")
+                    b.Property<DateTimeOffset>("LastEdited")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<long?>("ProductId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("ProductReference")
+                    b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
@@ -275,7 +266,9 @@ namespace RestaurantSystem.Infrastructure.Migrations
                 {
                     b.HasOne("RestaurantSystem.Core.Entities.Product", "Product")
                         .WithMany("Prices")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Product");
                 });

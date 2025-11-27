@@ -7,17 +7,19 @@ using System.Threading.Tasks;
 namespace RestaurantSystem.Core.Entities
 {
     public class MenuItem
-    {
-        public long Id { get; set; }
-        [Required]
-        public long? MenuReference { get; set; }
-        [Required]
-        public long? ProductReference { get; set; }
-        public bool IsActive { get; set; }
+{
+    public long Id { get; set; }
 
+    [Required]
+    public long MenuId { get; set; }  // قبلاً MenuReference
 
-        public Menu Menu { get; set; } = null!;
-        public Product Product { get; set; } = null!;
+    [Required]
+    public long ProductId { get; set; }  // قبلاً ProductReference
 
-    }
+    public bool IsActive { get; set; }
+
+    public Menu Menu { get; set; } = null!;
+    public Product Product { get; set; } = null!;
+}
+
 }

@@ -25,10 +25,10 @@ namespace RestaurantSystem.API.Controllers
                 var priceDtos = prices.Select(p => new PriceDto
                 {
                     Id = p.Id,
-                    ProductReference = p.ProductReference,
+                    ProductReference = p.ProductId,
                     Amount = p.Amount,
-                    CreatedDate = p.CreatedDate,
-                    LastEdited = p.LastEdited,
+                    CreatedDate = p.CreatedDate.UtcDateTime,
+                    LastEdited = p.LastEdited.UtcDateTime,
                     Product = p.Product != null ? new ProductDto
                     {
                         Id = p.Product.Id,
@@ -62,10 +62,10 @@ namespace RestaurantSystem.API.Controllers
                 var priceDto = new PriceDto
                 {
                     Id = price.Id,
-                    ProductReference = price.ProductReference,
+                    ProductReference = price.ProductId,
                     Amount = price.Amount,
-                    CreatedDate = price.CreatedDate,
-                    LastEdited = price.LastEdited,
+                    CreatedDate = price.CreatedDate.UtcDateTime,
+                    LastEdited = price.LastEdited.UtcDateTime,
                     Product = price.Product != null ? new ProductDto
                     {
                         Id = price.Product.Id,
@@ -98,7 +98,7 @@ namespace RestaurantSystem.API.Controllers
 
                 var price = new Price
                 {
-                    ProductReference = createPriceDto.ProductReference,
+                    ProductId = createPriceDto.ProductReference,
                     Amount = (long)createPriceDto.Amount,
                     CreatedDate = DateTime.Now,
                     LastEdited = DateTime.Now
@@ -109,10 +109,10 @@ namespace RestaurantSystem.API.Controllers
                 var priceDto = new PriceDto
                 {
                     Id = price.Id,
-                    ProductReference = price.ProductReference,
+                    ProductReference = price.ProductId,
                     Amount = price.Amount,
-                    CreatedDate = price.CreatedDate,
-                    LastEdited = price.LastEdited
+                    CreatedDate = price.CreatedDate.UtcDateTime,
+                    LastEdited = price.LastEdited.UtcDateTime
                 };
 
                 return CreatedAtAction(nameof(GetPrice), new { id = price.Id }, ApiResponseDto<PriceDto>.SuccessResult(priceDto, "Price created successfully"));
@@ -148,10 +148,10 @@ namespace RestaurantSystem.API.Controllers
                 var priceDto = new PriceDto
                 {
                     Id = existingPrice.Id,
-                    ProductReference = existingPrice.ProductReference,
+                    ProductReference = existingPrice.ProductId,
                     Amount = existingPrice.Amount,
-                    CreatedDate = existingPrice.CreatedDate,
-                    LastEdited = existingPrice.LastEdited
+                    CreatedDate = existingPrice.CreatedDate.UtcDateTime,
+                    LastEdited = existingPrice.LastEdited.UtcDateTime
                 };
 
                 return Ok(ApiResponseDto<PriceDto>.SuccessResult(priceDto, "Price updated successfully"));

@@ -11,7 +11,7 @@ namespace RestaurantSystem.Core.Entities
         public long Id { get; set; }
         public string? Title  { get; set; }
         public DateTimeOffset CreatedDate { get; set; }
-        public DateTime LastEdited { get; set; }
+        public DateTimeOffset LastEdited { get; set; }
 
         // هر منو چند منو آیتم دارد 
         public ICollection<MenuItem> MenuItems { get; set; } = new List<MenuItem>();

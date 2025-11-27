@@ -31,8 +31,8 @@ namespace RestaurantSystem.API.Controllers
                     MenuItems = m.MenuItems.Select(mi => new MenuItemDto
                     {
                         Id = mi.Id,
-                        MenuReference = mi.MenuReference,
-                        ProductReference = mi.ProductReference,
+                        MenuId = mi.MenuId,
+                        ProductId = mi.ProductId,
                         IsActive = mi.IsActive
                     }).ToList()
                 });
@@ -52,9 +52,7 @@ namespace RestaurantSystem.API.Controllers
             {
                 var menu = await _menuService.GetByIdAsync(id);
                 if (menu == null)
-                {
                     return NotFound(ApiResponseDto<MenuDto>.ErrorResult("Menu not found"));
-                }
 
                 var menuDto = new MenuDto
                 {
@@ -65,8 +63,8 @@ namespace RestaurantSystem.API.Controllers
                     MenuItems = menu.MenuItems.Select(mi => new MenuItemDto
                     {
                         Id = mi.Id,
-                        MenuReference = mi.MenuReference,
-                        ProductReference = mi.ProductReference,
+                        MenuId = mi.MenuId,
+                        ProductId = mi.ProductId,
                         IsActive = mi.IsActive
                     }).ToList()
                 };
@@ -93,8 +91,8 @@ namespace RestaurantSystem.API.Controllers
                 var menu = new Menu
                 {
                     Title = createMenuDto.Title,
-                    CreatedDate = DateTimeOffset.Now,
-                    LastEdited = DateTime.Now
+                    CreatedDate = DateTimeOffset.UtcNow,
+                    LastEdited = DateTimeOffset.UtcNow
                 };
 
                 await _menuService.AddMenuAsync(menu);
@@ -129,12 +127,10 @@ namespace RestaurantSystem.API.Controllers
 
                 var existingMenu = await _menuService.GetByIdAsync(id);
                 if (existingMenu == null)
-                {
                     return NotFound(ApiResponseDto<MenuDto>.ErrorResult("Menu not found"));
-                }
 
                 existingMenu.Title = updateMenuDto.Title;
-                existingMenu.LastEdited = DateTime.Now;
+                existingMenu.LastEdited = DateTimeOffset.UtcNow;
 
                 await _menuService.UpdateMenuAsync(existingMenu);
 
@@ -147,8 +143,8 @@ namespace RestaurantSystem.API.Controllers
                     MenuItems = existingMenu.MenuItems.Select(mi => new MenuItemDto
                     {
                         Id = mi.Id,
-                        MenuReference = mi.MenuReference,
-                        ProductReference = mi.ProductReference,
+                        MenuId = mi.MenuId,
+                        ProductId = mi.ProductId,
                         IsActive = mi.IsActive
                     }).ToList()
                 };
@@ -168,9 +164,7 @@ namespace RestaurantSystem.API.Controllers
             {
                 var menu = await _menuService.GetByIdAsync(id);
                 if (menu == null)
-                {
                     return NotFound(ApiResponseDto<object>.ErrorResult("Menu not found"));
-                }
 
                 await _menuService.DeleteMenuAsync(id);
 

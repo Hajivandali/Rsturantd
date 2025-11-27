@@ -18,7 +18,7 @@ namespace RestaurantSystem.Infrastructure.Persistence.Configurations
             // Relationship: Menu -> MenuItem
             builder.HasMany(m => m.MenuItems)
                    .WithOne(mi => mi.Menu)
-                   .HasForeignKey(mi => mi.MenuReference);
+                   .HasForeignKey(mi => mi.MenuId);
         }
     }
 }

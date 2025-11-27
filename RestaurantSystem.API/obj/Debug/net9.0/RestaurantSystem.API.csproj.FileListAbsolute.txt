@@ -6,6 +6,7 @@
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/RestaurantSystem.API.runtimeconfig.json
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/RestaurantSystem.API.dll
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/RestaurantSystem.API.pdb
+/Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/RestaurantSystem.API.xml
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/Humanizer.dll
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/Microsoft.AspNetCore.OpenApi.dll
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/Microsoft.Bcl.AsyncInterfaces.dll
@@ -34,6 +35,9 @@
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/Mono.TextTemplating.dll
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/Npgsql.dll
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/System.CodeDom.dll
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/System.Composition.AttributedModel.dll
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/System.Composition.Convention.dll
@@ -118,6 +122,7 @@
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/RestaurantSystem.API.csproj.CoreCompileInputs.cache
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/RestaurantSystem.API.MvcApplicationPartsAssemblyInfo.cs
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/RestaurantSystem.API.MvcApplicationPartsAssemblyInfo.cache
+/Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/RestaurantSystem.API.sourcelink.json
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/scopedcss/bundle/RestaurantSystem.API.styles.css
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/staticwebassets.build.json
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/staticwebassets.development.json
@@ -131,12 +136,7 @@
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/Restaura.34D3FFF3.Up2Date
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/RestaurantSystem.API.dll
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/refint/RestaurantSystem.API.dll
+/Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/RestaurantSystem.API.xml
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/RestaurantSystem.API.pdb
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/RestaurantSystem.API.genruntimeconfig.cache
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/ref/RestaurantSystem.API.dll
-/Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/RestaurantSystem.API.xml
-/Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/Swashbuckle.AspNetCore.Swagger.dll
-/Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll
-/Users/ali/Desktop/Ali/C#/RestaurantSystem.API/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
-/Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/RestaurantSystem.API.xml
-/Users/ali/Desktop/Ali/C#/RestaurantSystem.API/obj/Debug/net9.0/RestaurantSystem.API.sourcelink.json

@@ -12,7 +12,7 @@ using RestaurantSystem.Infrastructure.Persistence;
 namespace RestaurantSystem.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250918205146_InitialCreate")]
+    [Migration("20251127194632_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -32,9 +32,6 @@ namespace RestaurantSystem.Infrastructure.Migrations
                         .HasColumnType("bigint");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<long?>("CustomerID")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("Family")
                         .IsRequired()
@@ -66,8 +63,11 @@ namespace RestaurantSystem.Infrastructure.Migrations
                     b.Property<long>("CustomerId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("TotalAmount")
-                        .HasColumnType("bigint");
+                    b.Property<string>("InvoiceNumber")
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
@@ -88,8 +88,10 @@ namespace RestaurantSystem.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.Property<decimal>("Fee")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("numeric(18,2)");
+                        .HasColumnType("numeric");
+
+                    b.Property<long>("InvoiceId")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("InvoiceReference")
                         .HasColumnType("bigint");
@@ -98,12 +100,11 @@ namespace RestaurantSystem.Infrastructure.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<decimal>("TotalPrice")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("numeric(18,2)");
+                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InvoiceReference");
+                    b.HasIndex("InvoiceId");
 
                     b.HasIndex("ProductId");
 
@@ -121,7 +122,7 @@ namespace RestaurantSystem.Infrastructure.Migrations
                     b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("LastEdited")
+                    b.Property<DateTimeOffset>("LastEdited")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Title")
@@ -143,17 +144,17 @@ namespace RestaurantSystem.Infrastructure.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
-                    b.Property<long>("MenuReference")
+                    b.Property<long>("MenuId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("ProductReference")
+                    b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MenuReference");
+                    b.HasIndex("MenuId");
 
-                    b.HasIndex("ProductReference");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("MenuItems");
                 });
@@ -169,18 +170,18 @@ namespace RestaurantSystem.Infrastructure.Migrations
                     b.Property<long>("Amount")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("LastEdited")
+                    b.Property<DateTimeOffset>("LastEdited")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<long>("ProductReference")
+                    b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductReference");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Prices");
                 });
@@ -218,7 +219,7 @@ namespace RestaurantSystem.Infrastructure.Migrations
             modelBuilder.Entity("RestaurantSystem.Core.Entities.CustomerInvoice", b =>
                 {
                     b.HasOne("RestaurantSystem.Core.Entities.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Invoices")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -230,12 +231,12 @@ namespace RestaurantSystem.Infrastructure.Migrations
                 {
                     b.HasOne("RestaurantSystem.Core.Entities.CustomerInvoice", "Invoice")
                         .WithMany("InvoiceItems")
-                        .HasForeignKey("InvoiceReference")
+                        .HasForeignKey("InvoiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("RestaurantSystem.Core.Entities.Product", "Product")
-                        .WithMany()
+                        .WithMany("InvoiceItems")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -249,13 +250,13 @@ namespace RestaurantSystem.Infrastructure.Migrations
                 {
                     b.HasOne("RestaurantSystem.Core.Entities.Menu", "Menu")
                         .WithMany("MenuItems")
-                        .HasForeignKey("MenuReference")
+                        .HasForeignKey("MenuId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("RestaurantSystem.Core.Entities.Product", "Product")
                         .WithMany("MenuItems")
-                        .HasForeignKey("ProductReference")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -268,11 +269,16 @@ namespace RestaurantSystem.Infrastructure.Migrations
                 {
                     b.HasOne("RestaurantSystem.Core.Entities.Product", "Product")
                         .WithMany("Prices")
-                        .HasForeignKey("ProductReference")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("RestaurantSystem.Core.Entities.Customer", b =>
+                {
+                    b.Navigation("Invoices");
                 });
 
             modelBuilder.Entity("RestaurantSystem.Core.Entities.CustomerInvoice", b =>
@@ -287,6 +293,8 @@ namespace RestaurantSystem.Infrastructure.Migrations
 
             modelBuilder.Entity("RestaurantSystem.Core.Entities.Product", b =>
                 {
+                    b.Navigation("InvoiceItems");
+
                     b.Navigation("MenuItems");
 
                     b.Navigation("Prices");

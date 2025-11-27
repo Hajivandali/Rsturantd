@@ -18,7 +18,6 @@ namespace RestaurantSystem.Infrastructure.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CustomerID = table.Column<long>(type: "bigint", nullable: true),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Family = table.Column<string>(type: "text", nullable: false),
                     PhoneNumber = table.Column<long>(type: "bigint", nullable: false)
@@ -36,7 +35,7 @@ namespace RestaurantSystem.Infrastructure.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Title = table.Column<string>(type: "text", nullable: true),
                     CreatedDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    LastEdited = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    LastEdited = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,7 +67,8 @@ namespace RestaurantSystem.Infrastructure.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CustomerId = table.Column<long>(type: "bigint", nullable: false),
-                    TotalAmount = table.Column<long>(type: "bigint", nullable: false)
+                    TotalAmount = table.Column<decimal>(type: "numeric", nullable: false),
+                    InvoiceNumber = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -87,22 +87,22 @@ namespace RestaurantSystem.Infrastructure.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    MenuReference = table.Column<long>(type: "bigint", nullable: false),
-                    ProductReference = table.Column<long>(type: "bigint", nullable: false),
+                    MenuId = table.Column<long>(type: "bigint", nullable: false),
+                    ProductId = table.Column<long>(type: "bigint", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MenuItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MenuItems_Menus_MenuReference",
-                        column: x => x.MenuReference,
+                        name: "FK_MenuItems_Menus_MenuId",
+                        column: x => x.MenuId,
                         principalTable: "Menus",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MenuItems_Products_ProductReference",
-                        column: x => x.ProductReference,
+                        name: "FK_MenuItems_Products_ProductId",
+                        column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -114,17 +114,17 @@ namespace RestaurantSystem.Infrastructure.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ProductReference = table.Column<long>(type: "bigint", nullable: false),
+                    ProductId = table.Column<long>(type: "bigint", nullable: false),
                     Amount = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    LastEdited = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    CreatedDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    LastEdited = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Prices", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Prices_Products_ProductReference",
-                        column: x => x.ProductReference,
+                        name: "FK_Prices_Products_ProductId",
+                        column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -137,17 +137,18 @@ namespace RestaurantSystem.Infrastructure.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     CountProduct = table.Column<int>(type: "integer", nullable: false),
-                    Fee = table.Column<decimal>(type: "numeric(18,2)", precision: 18, scale: 2, nullable: false),
-                    TotalPrice = table.Column<decimal>(type: "numeric(18,2)", precision: 18, scale: 2, nullable: false),
+                    Fee = table.Column<decimal>(type: "numeric", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "numeric", nullable: false),
                     InvoiceReference = table.Column<long>(type: "bigint", nullable: false),
+                    InvoiceId = table.Column<long>(type: "bigint", nullable: false),
                     ProductId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CustomerInvoiceItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CustomerInvoiceItems_CustomerInvoices_InvoiceReference",
-                        column: x => x.InvoiceReference,
+                        name: "FK_CustomerInvoiceItems_CustomerInvoices_InvoiceId",
+                        column: x => x.InvoiceId,
                         principalTable: "CustomerInvoices",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -160,9 +161,9 @@ namespace RestaurantSystem.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerInvoiceItems_InvoiceReference",
+                name: "IX_CustomerInvoiceItems_InvoiceId",
                 table: "CustomerInvoiceItems",
-                column: "InvoiceReference");
+                column: "InvoiceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CustomerInvoiceItems_ProductId",
@@ -175,19 +176,19 @@ namespace RestaurantSystem.Infrastructure.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MenuItems_MenuReference",
+                name: "IX_MenuItems_MenuId",
                 table: "MenuItems",
-                column: "MenuReference");
+                column: "MenuId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MenuItems_ProductReference",
+                name: "IX_MenuItems_ProductId",
                 table: "MenuItems",
-                column: "ProductReference");
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Prices_ProductReference",
+                name: "IX_Prices_ProductId",
                 table: "Prices",
-                column: "ProductReference");
+                column: "ProductId");
         }
 
         /// <inheritdoc />

@@ -7,7 +7,7 @@ namespace RestaurantSystem.API.DTOs
         public long Id { get; set; }
         public string? Title { get; set; }
         public DateTimeOffset CreatedDate { get; set; }
-        public DateTime LastEdited { get; set; }
+        public DateTimeOffset LastEdited { get; set; }
         public List<MenuItemDto> MenuItems { get; set; } = new();
     }
 

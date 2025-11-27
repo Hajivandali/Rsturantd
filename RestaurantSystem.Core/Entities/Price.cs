@@ -1,18 +1,19 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RestaurantSystem.Core.Entities
 {
     public class Price
     {
         public long Id { get; set; }
-        public long ProductReference { get; set; } // fornky be product 
+
+        // تغییر نام به ProductId برای هماهنگی با دیگر مدل‌ها
+        public long ProductId { get; set; }  
+
         public long Amount { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime LastEdited { get; set; }
- 
-        public Product? Product { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
+        public DateTimeOffset LastEdited { get; set; }
+
+        public Product Product { get; set; } = null!;
     }
-}                       
+}

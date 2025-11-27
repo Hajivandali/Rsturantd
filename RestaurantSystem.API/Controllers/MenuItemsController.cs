@@ -25,15 +25,15 @@ namespace RestaurantSystem.API.Controllers
                 var menuItemDtos = menuItems.Select(mi => new MenuItemDto
                 {
                     Id = mi.Id,
-                    MenuReference = mi.MenuReference,
-                    ProductReference = mi.ProductReference,
+                    MenuId = mi.MenuId,
+                    ProductId = mi.ProductId,
                     IsActive = mi.IsActive,
                     Menu = mi.Menu != null ? new MenuDto
                     {
                         Id = mi.Menu.Id,
                         Title = mi.Menu.Title,
                         CreatedDate = mi.Menu.CreatedDate,
-                        LastEdited = mi.Menu.LastEdited
+                        LastEdited = mi.Menu.LastEdited.UtcDateTime
                     } : null,
                     Product = mi.Product != null ? new ProductDto
                     {
@@ -68,15 +68,15 @@ namespace RestaurantSystem.API.Controllers
                 var menuItemDto = new MenuItemDto
                 {
                     Id = menuItem.Id,
-                    MenuReference = menuItem.MenuReference,
-                    ProductReference = menuItem.ProductReference,
+                    MenuId = menuItem.MenuId,
+                    ProductId = menuItem.ProductId,
                     IsActive = menuItem.IsActive,
                     Menu = menuItem.Menu != null ? new MenuDto
                     {
                         Id = menuItem.Menu.Id,
                         Title = menuItem.Menu.Title,
                         CreatedDate = menuItem.Menu.CreatedDate,
-                        LastEdited = menuItem.Menu.LastEdited
+                        LastEdited = menuItem.Menu.LastEdited.UtcDateTime
                     } : null,
                     Product = menuItem.Product != null ? new ProductDto
                     {
@@ -110,8 +110,8 @@ namespace RestaurantSystem.API.Controllers
 
                 var menuItem = new MenuItem
                 {
-                    MenuReference = createMenuItemDto.MenuReference,
-                    ProductReference = createMenuItemDto.ProductReference,
+                    MenuId = createMenuItemDto.MenuId,
+                    ProductId = createMenuItemDto.ProductId,
                     IsActive = createMenuItemDto.IsActive
                 };
 
@@ -120,8 +120,8 @@ namespace RestaurantSystem.API.Controllers
                 var menuItemDto = new MenuItemDto
                 {
                     Id = menuItem.Id,
-                    MenuReference = menuItem.MenuReference,
-                    ProductReference = menuItem.ProductReference,
+                    MenuId = menuItem.MenuId,
+                    ProductId = menuItem.ProductId,
                     IsActive = menuItem.IsActive
                 };
 
@@ -150,8 +150,8 @@ namespace RestaurantSystem.API.Controllers
                     return NotFound(ApiResponseDto<MenuItemDto>.ErrorResult("Menu item not found"));
                 }
 
-                existingMenuItem.MenuReference = updateMenuItemDto.MenuReference;
-                existingMenuItem.ProductReference = updateMenuItemDto.ProductReference;
+                existingMenuItem.MenuId = updateMenuItemDto.MenuId;
+                existingMenuItem.ProductId = updateMenuItemDto.ProductId;
                 existingMenuItem.IsActive = updateMenuItemDto.IsActive;
 
                 await _menuItemService.UpdateAsync(existingMenuItem);
@@ -159,8 +159,8 @@ namespace RestaurantSystem.API.Controllers
                 var menuItemDto = new MenuItemDto
                 {
                     Id = existingMenuItem.Id,
-                    MenuReference = existingMenuItem.MenuReference,
-                    ProductReference = existingMenuItem.ProductReference,
+                    MenuId = existingMenuItem.MenuId,
+                    ProductId = existingMenuItem.ProductId,
                     IsActive = existingMenuItem.IsActive
                 };
 
@@ -185,7 +185,7 @@ namespace RestaurantSystem.API.Controllers
 
                 await _menuItemService.DeleteAsync(id);
 
-                return Ok(ApiResponseDto<object>.SuccessResult(null, "Menu item deleted successfully"));
+                return Ok(ApiResponseDto<object>.SuccessResult(new object(), "Menu item deleted successfully"));
             }
             catch (Exception ex)
             {
