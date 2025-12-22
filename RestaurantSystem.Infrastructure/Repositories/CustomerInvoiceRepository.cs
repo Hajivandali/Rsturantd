@@ -23,13 +23,12 @@ namespace RestaurantSystem.Infrastructure.Repositories
                 .ThenInclude(cii => cii.Product)
                 .FirstOrDefaultAsync(ci => ci.Id == id);
         }
-        public async Task DeleteAsync(long id)
+    public async Task DeleteAsync(long id)
 {
     var entity = await _dbSet.FindAsync(id);
     if (entity != null)
     {
         _dbSet.Remove(entity);
-        await _context.SaveChangesAsync();
     }
 }
 

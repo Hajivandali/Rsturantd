@@ -13,5 +13,6 @@ namespace RestaurantSystem.Core.Interfaces
         Task AddAsync(Price price);
         Task UpdateAsync(Price price);
         Task DeleteAsync(Price price);
+        Task SaveChangesAsync();
     }
 }

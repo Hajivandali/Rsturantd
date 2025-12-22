@@ -29,16 +29,19 @@ namespace RestaurantSystem.Application.Services
         public async Task AddAsync(Price price)
         {
             await _priceRepository.AddAsync(price);
+            await _priceRepository.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(Price price)
         {
             await _priceRepository.UpdateAsync(price);
+            await _priceRepository.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Price price)
         {
             await _priceRepository.DeleteAsync(price);
+            await _priceRepository.SaveChangesAsync();
         }
 
 

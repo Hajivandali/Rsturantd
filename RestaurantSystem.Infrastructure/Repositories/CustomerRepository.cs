@@ -19,7 +19,6 @@ namespace RestaurantSystem.Infrastructure.Repositories
             if (entity != null)
             {
                 _dbSet.Remove(entity);
-                await _context.SaveChangesAsync();
             }
         }
     }
