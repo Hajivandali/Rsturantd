@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ali/Desktop/Ali/C#/RestaurantSystem.Core/RestaurantSystem.Core.csproj": {}
+    "/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/RestaurantSystem.Core.csproj": {}
   },
   "projects": {
-    "/Users/ali/Desktop/Ali/C#/RestaurantSystem.Core/RestaurantSystem.Core.csproj": {
+    "/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/RestaurantSystem.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ali/Desktop/Ali/C#/RestaurantSystem.Core/RestaurantSystem.Core.csproj",
+        "projectUniqueName": "/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/RestaurantSystem.Core.csproj",
         "projectName": "RestaurantSystem.Core",
-        "projectPath": "/Users/ali/Desktop/Ali/C#/RestaurantSystem.Core/RestaurantSystem.Core.csproj",
+        "projectPath": "/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/RestaurantSystem.Core.csproj",
         "packagesPath": "/Users/ali/.nuget/packages/",
-        "outputPath": "/Users/ali/Desktop/Ali/C#/RestaurantSystem.Core/obj/",
+        "outputPath": "/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/ali/.nuget/NuGet/NuGet.Config"

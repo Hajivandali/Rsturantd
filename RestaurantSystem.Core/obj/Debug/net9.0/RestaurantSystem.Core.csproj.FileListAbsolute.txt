@@ -10,3 +10,15 @@
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.Core/obj/Debug/net9.0/refint/RestaurantSystem.Core.dll
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.Core/obj/Debug/net9.0/RestaurantSystem.Core.pdb
 /Users/ali/Desktop/Ali/C#/RestaurantSystem.Core/obj/Debug/net9.0/ref/RestaurantSystem.Core.dll
+/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/bin/Debug/net9.0/RestaurantSystem.Core.deps.json
+/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/bin/Debug/net9.0/RestaurantSystem.Core.dll
+/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/bin/Debug/net9.0/RestaurantSystem.Core.pdb
+/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/obj/Debug/net9.0/RestaurantSystem.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/obj/Debug/net9.0/RestaurantSystem.Core.AssemblyInfoInputs.cache
+/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/obj/Debug/net9.0/RestaurantSystem.Core.AssemblyInfo.cs
+/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/obj/Debug/net9.0/RestaurantSystem.Core.csproj.CoreCompileInputs.cache
+/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/obj/Debug/net9.0/RestaurantSystem.Core.sourcelink.json
+/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/obj/Debug/net9.0/RestaurantSystem.Core.dll
+/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/obj/Debug/net9.0/refint/RestaurantSystem.Core.dll
+/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/obj/Debug/net9.0/RestaurantSystem.Core.pdb
+/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/obj/Debug/net9.0/ref/RestaurantSystem.Core.dll

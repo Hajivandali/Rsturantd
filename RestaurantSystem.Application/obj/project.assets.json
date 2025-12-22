@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/ali/Desktop/Ali/C#/RestaurantSystem.Application/RestaurantSystem.Application.csproj",
+      "projectUniqueName": "/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Application/RestaurantSystem.Application.csproj",
       "projectName": "RestaurantSystem.Application",
-      "projectPath": "/Users/ali/Desktop/Ali/C#/RestaurantSystem.Application/RestaurantSystem.Application.csproj",
+      "projectPath": "/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Application/RestaurantSystem.Application.csproj",
       "packagesPath": "/Users/ali/.nuget/packages/",
-      "outputPath": "/Users/ali/Desktop/Ali/C#/RestaurantSystem.Application/obj/",
+      "outputPath": "/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Application/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/ali/.nuget/NuGet/NuGet.Config"
@@ -51,8 +51,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Users/ali/Desktop/Ali/C#/RestaurantSystem.Core/RestaurantSystem.Core.csproj": {
-              "projectPath": "/Users/ali/Desktop/Ali/C#/RestaurantSystem.Core/RestaurantSystem.Core.csproj"
+            "/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/RestaurantSystem.Core.csproj": {
+              "projectPath": "/Users/ali/Desktop/Ali/CSharp/RestaurantSystem.Core/RestaurantSystem.Core.csproj"
             }
           }
         }
