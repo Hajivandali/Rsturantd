@@ -11,10 +11,10 @@ namespace RestaurantSystem.Core.Entities
     public long Id { get; set; }
 
     [Required]
-    public long MenuId { get; set; }  // قبلاً MenuReference
+    public long MenuId { get; set; } 
 
     [Required]
-    public long ProductId { get; set; }  // قبلاً ProductReference
+    public long ProductId { get; set; }  
 
     public bool IsActive { get; set; }
 
