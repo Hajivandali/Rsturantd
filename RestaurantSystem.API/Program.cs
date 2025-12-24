@@ -132,6 +132,7 @@ if (app.Environment.IsDevelopment())
 // Add global exception handling middleware
 app.UseMiddleware<GlobalExceptionMiddleware>();
 
+
 app.UseCors("FrontendCors");
 if (!app.Environment.IsDevelopment())
 {

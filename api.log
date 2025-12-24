@@ -1,0 +1,496 @@
+Using launch settings from RestaurantSystem.API/Properties/launchSettings.json...
+Building...
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5224
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /Users/ali/Desktop/Ali/CSharp/RestaurantSystem.API
+warn: Microsoft.EntityFrameworkCore.Query[20504]
+      Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (15ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (15ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Amount", p."CreatedDate", p."LastEdited", p."ProductId", p0."Id", p0."Description", p0."Images", p0."InventoryItemID", p0."Name", p0."Unit"
+      FROM "Prices" AS p
+      INNER JOIN "Products" AS p0 ON p."ProductId" = p0."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT m."Id", m."CreatedDate", m."LastEdited", m."Title", s."Id", s."IsActive", s."MenuId", s."ProductId", s."Id0", s."Description", s."Images", s."InventoryItemID", s."Name", s."Unit"
+      FROM "Menus" AS m
+      LEFT JOIN (
+          SELECT m0."Id", m0."IsActive", m0."MenuId", m0."ProductId", p."Id" AS "Id0", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit"
+          FROM "MenuItems" AS m0
+          INNER JOIN "Products" AS p ON m0."ProductId" = p."Id"
+      ) AS s ON m."Id" = s."MenuId"
+      ORDER BY m."Id", s."Id"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."Description", p."Images", p."InventoryItemID", p."Name", p."Unit", m."Id", m."IsActive", m."MenuId", m."ProductId", p0."Id", p0."Amount", p0."CreatedDate", p0."LastEdited", p0."ProductId"
+      FROM "Products" AS p
+      LEFT JOIN "MenuItems" AS m ON p."Id" = m."ProductId"
+      LEFT JOIN "Prices" AS p0 ON p."Id" = p0."ProductId"
+      ORDER BY p."Id", m."Id"

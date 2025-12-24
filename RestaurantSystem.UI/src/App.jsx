@@ -1,6 +1,10 @@
 import { useMemo } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import MenuPage from './pages/MenuPage.jsx';
+import AdminMenusPage from './pages/AdminMenusPage.jsx';
+import AdminMenuItemsPage from './pages/AdminMenuItemsPage.jsx';
+import AdminProductsPage from './pages/AdminProductsPage.jsx';
+import AdminPricesPage from './pages/AdminPricesPage.jsx';
 import { useMenusData } from './hooks/useMenus.js';
 
 const fallbackMenus = [
@@ -93,8 +97,8 @@ function HomePage() {
               S
             </div>
             <div>
-              <p className="font-display text-lg tracking-wide">Saffron &amp; Stone</p>
-              <p className="text-xs text-[var(--color-olive)]">Market kitchen · since 2012</p>
+              <p className="font-display text-lg tracking-wide">Coffee  &amp; Stone</p>
+              <p className="text-xs text-[var(--color-olive)]">Jey Market</p>
             </div>
           </div>
           <nav className="hidden items-center gap-8 text-sm text-[var(--color-olive)] md:flex">
@@ -108,9 +112,17 @@ function HomePage() {
               Reserve
             </a>
           </nav>
-          <button className="rounded-full bg-[var(--color-ink)] px-5 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-cream)]">
-            Book Table
-          </button>
+          <div className="flex items-center gap-3">
+            <Link
+              to="/admin/menus"
+              className="rounded-full border border-[var(--color-ink)] px-4 py-2 text-xs uppercase tracking-[0.2em]"
+            >
+              Admin Panel
+            </Link>
+            <button className="rounded-full bg-[var(--color-ink)] px-5 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-cream)]">
+              Book Table
+            </button>
+          </div>
         </header>
 
         <section className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
@@ -256,16 +268,16 @@ function HomePage() {
               <button className="rounded-full border border-[var(--color-ink)] px-6 py-3 text-sm font-medium">
                 Call 555-0144
               </button>
-              <p className="text-xs text-[var(--color-olive)]">
+              {/* <p className="text-xs text-[var(--color-olive)]">
                 API endpoint: {import.meta.env.VITE_API_BASE_URL || 'same origin'}
-              </p>
+              </p> */}
             </div>
           </div>
         </section>
 
         <footer className="flex flex-wrap items-center justify-between gap-4 border-t border-[var(--color-mist)] pt-6 text-xs text-[var(--color-olive)]">
-          <span>Saffron &amp; Stone · 124 Ember Lane · Open daily</span>
-          <span>Instagram · @saffronstone</span>
+          <span>  Open daily</span>
+          <span>Instagram · @Jey</span>
         </footer>
       </div>
     </div>
@@ -277,6 +289,10 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/menu" element={<MenuPage />} />
+      <Route path="/admin/menus" element={<AdminMenusPage />} />
+      <Route path="/admin/menu-items" element={<AdminMenuItemsPage />} />
+      <Route path="/admin/products" element={<AdminProductsPage />} />
+      <Route path="/admin/prices" element={<AdminPricesPage />} />
     </Routes>
   );
 }

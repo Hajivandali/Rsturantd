@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { useMenusData } from '../hooks/useMenus.js';
 
 function MenuPage() {
+  const { menus, prices, products, status } = useMenusData();
   const [openMenuId, setOpenMenuId] = useState(null);
   const [activeTag, setActiveTag] = useState('All');
-  const { menus, prices, products, status } = useMenusData();
 
   const menuCards = useMemo(() => {
     return menus.map((menu) => {
@@ -25,8 +25,6 @@ function MenuPage() {
           name: product.name ?? product.Name ?? (productId != null ? `Item #${productId}` : 'Menu item'),
           description: product.description ?? product.Description ?? 'Freshly prepared.',
           image: product.images ?? product.Images ?? '',
-          unit: product.unit ?? product.Unit ?? null,
-          inventoryItemId: product.inventoryItemID ?? product.InventoryItemID ?? null,
           price,
           isActive: item.isActive ?? item.IsActive ?? false,
         };
@@ -144,10 +142,6 @@ function MenuPage() {
                             <div>
                               <p className="text-sm font-semibold text-[var(--color-night)]">{item.name}</p>
                               <p className="text-xs text-[var(--color-olive)]">{item.description}</p>
-                              <div className="mt-1 text-[10px] uppercase tracking-[0.25em] text-[var(--color-olive)]">
-                                {item.unit != null ? `Unit ${item.unit}` : 'Unit n/a'}
-                                {item.inventoryItemId != null ? ` · Inv ${item.inventoryItemId}` : ''}
-                              </div>
                             </div>
                           </div>
                           <div className="flex items-center gap-4 text-xs uppercase tracking-[0.2em] text-[var(--color-olive)]">
